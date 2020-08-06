@@ -1,0 +1,5 @@
+BD TURIXMÓ
+
+TABLA USUARIO:
+
+--Todas las contraseñas de todos los usuarios son : 12345 
