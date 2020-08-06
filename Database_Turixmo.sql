@@ -49,8 +49,8 @@ apellido VARCHAR(100)  NOT NULL,
 correo VARCHAR(100)  NOT NULL UNIQUE,
 contrasena VARCHAR(100)  NOT NULL,
 celular VARCHAR(100)  NOT NULL UNIQUE,
-genero boolean NULL ,
-token VARCHAR(100) NULL,
+genero boolean NULL , -- null ->Indefinido 1->Hombre  0-> Mujer
+token VARCHAR(100) NULL, -- recuperar contrasena
 imagen varchar(200) NULL,
 fechanacimiento DATE NULL,
 fecharegistro DATETIME  NOT NULL,
@@ -293,6 +293,15 @@ INSERT INTO tipohabitacion VALUES 	(1,"Individual Sencilla","Una habitación asi
                                     (7,"King","Una habitación con una cama king-size. Puede ser ocupado por una o más personas"),
                                     (8,"Estudio","una habitación con una cama de estudio, un sofá que se puede convertir en una cama. También puede tener una cama adicional.");
 
+INSERT INTO estadoreserva VALUES (1,"Consulta",""),
+								 (2,"Solicitud de reservacion",""),
+                                 (3,"Pendiente",""),
+                                 (4,"Confirmada",""),
+                                 (5,"Rechazada",""),
+                                 (6,"Caducada",""),
+                                 (7,"Cancelada",""),
+                                 (8,"Cerrada",""),
+                                 (9,"Finalizada","");
 
 -- v_hoteles_habitacions_disponibles agrupados por sitio 
 -- filtros (precio-lugar-etc-serviciosexistentes)
