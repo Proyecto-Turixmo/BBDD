@@ -297,3 +297,4 @@ INSERT INTO tipohabitacion VALUES 	(1,"Individual Sencilla","Una habitación asi
 -- v_hoteles_habitacions_disponibles agrupados por sitio 
 -- filtros (precio-lugar-etc-serviciosexistentes)
 -- sp_seria un proceso del modelo?
+-- comentario para pull -Alfred
