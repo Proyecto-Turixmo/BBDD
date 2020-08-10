@@ -237,6 +237,7 @@ CREATE TABLE `habitacion` (
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -249,6 +250,12 @@ CREATE TABLE `habitacionservicio` (
   `idservicio` int(11) NOT NULL,
   `precio` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- inserciones Cristian Mesa
+insert into 'habitacionservicio' ('idhabitacionservicio', 'idhabitacion', 'idservicio', 'precio') values
+(1, 1, 1, 80.000),
+(2, 2, 2, 100.000),
+(3, 3, 3, 120.000),
+(4, 4, 4, 150.000);
 
 -- --------------------------------------------------------
 
@@ -271,6 +278,14 @@ CREATE TABLE `hotel` (
   `fecharegistro` datetime NOT NULL,
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Inserciones Cristian Mesa
+insert into hotel ('idhotel', 'idusuario', 'idciudad', 'estrella', 'nombre', 'direccion', 'telefono', 'celular', 'correo', 'sitioweb', 'descripcion', 'fecharegistro', 'inhabilitado') values
+(1, 1, 14, 4, 'Hotel las delicias', 'Calle 24A #44A 65', '2034556', '3214567890', 'www.hotellasdelicias.com', 'Este hotel está muy bien situado en el distrito Teusaquillo de Bogotá, a 1 km del centro internacional de exposiciones Corferias y a 6 km de la plaza Bolívar. También cuenta con salón compartido, centro de negocios y WiFi gratuita en todas las instalaciones. El alojamiento ofrece recepción 24 horas, servicio de habitaciones y cambio de divisa.', '22/08/2015', ''),
+(2, 2, 30, 3, 'Hotel del valle', 'Avenida 5 Norte 29 AN 48', '3065487', '3209807654', 'www.hoteldelvalle.com', 'a 3,7 km de la catedral de San Pedro, y ofrece alojamiento con restaurante, aparcamiento privado gratuito, bar y salón compartido. Ofrece habitaciones familiares y terraza. El alojamiento ofrece recepción 24 horas, servicio de traslado, mostrador de información turística y conexión WiFi gratuita en todo el establecimiento.', '10/09/2002', ''),
+(3, 3, 20, 5, 'Hotel del cauca', 'Km 18 Vía Bolombolo', '7035506', '3124667920', 'www.hotelcauca.com', 'se encuentra en Jericó, a 30 minutos en coche del centro de la localidad, y cuenta con un jardín, una piscina cubierta, un restaurante y conexión Wi-Fi gratuita. Además, sirve un desayuno bufé.', '30/02/2010', ''),
+(5, 4, 5, 4, 'Hotel de santamarta', 'Calle 115 # 2 - 39.', '9057812', '3116006130', 'www.hotelsantamarta.com', ' situado en Santa Marta, ofrece WiFi gratis y piscina al aire libre. Además, el establecimiento alberga terraza, centro de fitness y un bar. Hay aparcamiento privado.', '17/05/2008', ''),
+
 
 -- --------------------------------------------------------
 
@@ -383,6 +398,16 @@ CREATE TABLE `servicio` (
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- inseciones Cristian Mesa
+insert into 'servicio' ('idservivio', 'nombre', 'descripcion') values
+(1, 'Parqueadero', 'Lugar para estacionar los vehiculos'),
+(2, 'Restaurante', 'Capacidad de mesas y comidas que ofrece '),
+(3, 'Piscina', 'Cantidad y medidas de la/s piscinas'),
+(4, 'Piscina con tobogan', 'Especificacion de tobogan'),
+(5, 'Area de juegos', 'Juegos y/o atracciones')
+(6, 'Zona verde', 'Cantidad de zona verde'),
+(7, 'Limpieza a la habitacion', 'Servicio que prestan las empleadas domesticas'),
+(8, 'Recibir comida', 'Llevar comida hasta la habitacion');
 
 -- --------------------------------------------------------
 

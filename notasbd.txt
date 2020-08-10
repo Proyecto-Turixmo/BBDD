@@ -3,3 +3,5 @@ BD TURIXMÓ
 TABLA USUARIO:
 
 --Todas las contraseñas de todos los usuarios son : 12345 
+
+--El que valla a registrar habitacion tiene que mirar los precios que estan en la tabla habitacionservicio
