@@ -879,6 +879,16 @@ insert into habitacionservicio (idhabitacionservicio, idhabitacion, idservicio, 
 (3, 3, 3, 120.000),
 (4, 4, 4, 150.000);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- lobaton 
+INSERT INTO `reserva` (`idreserva`, `idusuario`, `idestadoreserva`, `preciototal`, `descripcion`, `fechaentrada`, `fechasalida`, `fechareserva`, `inhabilitado`) VALUES (NULL, '1', '2', '20000000', NULL, '2020-08-05 12:11:49', '2020-08-14 02:15:49', '2020-08-12 02:33:49', '0'),
+ (NULL, '2', '3', '8000000', NULL, '2020-10-14 13:33:49', '2020-08-12 14:33:49', '2020-08-04 02:33:49', '0'),
+ (NULL, '4', '1', '100000', NULL, '2020-10-14 02:33:49', '2020-10-31 02:33:49', '2020-08-05 02:33:49', '0'),
+ (NULL, '5', '1', '700000', NULL, '2020-09-17 02:33:49', '2020-09-19 02:33:49', '2020-06-09 02:33:49', '0'),
+ (NULL, '6', '1', '700000', NULL, '2020-02-04 02:33:49', '2020-03-11 02:33:49', '2019-06-19 02:33:49', '0');
+ 
+ INSERT INTO `reservahabitacion` (`idreservahabitacion`, `idhabitacion`, `idreserva`, `precio`, `descuento`, `fecharegistro`) VALUES 
+ (NULL, '2', '3', '900000', '0', '2019-09-10 02:38:55'),
+ (NULL, '2', '5', '1100000', '0', '2020-02-21 02:38:55'), 
+ (NULL, '4', '3', '5000000', '100000', '2019-02-05 02:38:55'), 
+ (NULL, '3', '5', '300000', '20000', '2020-06-17 02:38:55'),
+ (NULL, '4', '2', '8000000', '10000', '2018-05-15 02:38:55');
