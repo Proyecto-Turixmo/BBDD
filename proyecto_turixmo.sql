@@ -26,6 +26,8 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+create database turixmoexample;
+use turixmoexample;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizarhotel` (`idciudad` INT, `estrella` INT, `nombre` VARCHAR(100), `direccion` VARCHAR(100), `telefono` VARCHAR(100), `celular` VARCHAR(100), `correo` VARCHAR(100), `sitioweb` VARCHAR(100), `descripcion` MEDIUMTEXT, `idhotel` INT, `idusuario` INT)  update v_hotel as h set h.idciudad = idciudad,h.estrella = estrella,h.nombre = nombre,h.direccion = direccion,
 						h.telefono = telefono,h.celular = celular,h.correo = correo,h.sitioweb = sitioweb,h.descripcion =descripcion
 		where h.idhotel = idhotel and h.idusuario = idusuario$$
@@ -53,65 +55,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertarusuario` (`idusuario` IN
 DELIMITER ;
 
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `ciudad`
 --
-
 CREATE TABLE `ciudad` (
   `idciudad` int(11) NOT NULL,
   `iddepartamento` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `ciudad`
 --
-
-INSERT INTO `ciudad` (`idciudad`, `iddepartamento`, `nombre`) VALUES
-(1, 1, 'Leticia'),
-(2, 2, 'Medellin'),
-(3, 3, 'Arauca'),
-(4, 4, 'Barranquilla'),
-(5, 5, 'Cartagena'),
-(6, 6, 'Tunja'),
-(7, 7, 'Manizales'),
-(8, 8, 'Florencia'),
-(9, 9, 'Yopal'),
-(10, 10, 'Popayán'),
-(11, 11, 'Valledupar'),
-(12, 12, 'Quibdó'),
-(13, 13, 'Montería'),
-(14, 14, 'Bogotá D.C'),
-(15, 15, 'Inírida'),
-(16, 16, 'San Jose del Guaviare'),
-(17, 17, 'Neiva'),
-(18, 18, 'Riohacha'),
-(19, 19, 'Santa Marta'),
-(20, 20, 'Villavicencio'),
-(21, 21, 'Pasto'),
-(22, 22, 'Cúcuta'),
-(23, 23, 'Mocoa'),
-(24, 24, 'Armenia'),
-(25, 25, 'Pereira'),
-(26, 26, 'San Andrés'),
-(27, 27, 'Bucaramanga'),
-(28, 28, 'Sincelejo'),
-(29, 29, 'Ibagué'),
-(30, 30, 'Cali'),
-(31, 31, 'Mitú'),
-(32, 32, 'Puerto Carreño'),
-(33, 20, 'Acacias'),
-(34, 20, 'Guamal'),
-(35, 20, 'Granada'),
-(36, 20, 'San Martín');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `comentario`
 --
-
 CREATE TABLE `comentario` (
   `idcomentario` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
@@ -119,108 +77,47 @@ CREATE TABLE `comentario` (
   `comentario` mediumtext NOT NULL,
   `fecharegistro` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `departamento`
 --
-
 CREATE TABLE `departamento` (
   `iddepartamento` int(11) NOT NULL,
   `idpais` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `departamento`
 --
-
-INSERT INTO `departamento` (`iddepartamento`, `idpais`, `nombre`) VALUES
-(1, 1, 'Amazonas'),
-(2, 1, 'Antioquia'),
-(3, 1, 'Arauca'),
-(4, 1, 'Atlántico'),
-(5, 1, 'Bolívar'),
-(6, 1, 'Boyacá'),
-(7, 1, 'Caldas'),
-(8, 1, 'Caquetá'),
-(9, 1, 'Casanare'),
-(10, 1, 'Cauca'),
-(11, 1, 'Cesar'),
-(12, 1, 'Chocó'),
-(13, 1, 'Córdoba'),
-(14, 1, 'Cundinamarca'),
-(15, 1, 'Guainía'),
-(16, 1, 'Guaviare'),
-(17, 1, 'Huila'),
-(18, 1, 'La Guajira'),
-(19, 1, 'Magdalena'),
-(20, 1, 'Meta'),
-(21, 1, 'Nariño'),
-(22, 1, 'Norte de Santander'),
-(23, 1, 'Putumayo'),
-(24, 1, 'Quindío'),
-(25, 1, 'Risaralda'),
-(26, 1, 'San Andrés y Providencia'),
-(27, 1, 'Santander'),
-(28, 1, 'Sucre'),
-(29, 1, 'Tolima'),
-(30, 1, 'Valle del Cauca'),
-(31, 1, 'Vaupés'),
-(32, 1, 'Vichada');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `estadoreserva`
 --
-
 CREATE TABLE `estadoreserva` (
   `idestadoreserva` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `estadoreserva`
 --
-
-INSERT INTO `estadoreserva` (`idestadoreserva`, `nombre`, `descripcion`) VALUES
-(1, 'En procéso', NULL),
-(2, 'Finalizada', NULL),
-(3, 'Cancelada', NULL);
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `favorito`
 --
-
 CREATE TABLE `favorito` (
   `idfavorito` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
   `fecharegistro` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `favorito`
 --
-
-INSERT INTO `favorito` (`idfavorito`, `idusuario`, `idhabitacion`, `fecharegistro`) VALUES
-(1, 1, 1, '2020-08-06 04:30:16'),
-(2, 2, 2, '2020-08-06 04:30:45'),
-(3, 3, 3, '2020-08-06 04:31:00'),
-(4, 4, 4, '2020-08-06 04:32:30'),
-(5, 5, 5, '2020-08-06 04:32:27');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `habitacion`
 --
-
 CREATE TABLE `habitacion` (
   `idhabitacion` int(11) NOT NULL,
   `idtipohabitacion` int(11) NOT NULL,
@@ -236,33 +133,20 @@ CREATE TABLE `habitacion` (
   `fecharegistro` datetime NOT NULL,
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `habitacionservicio`
 --
-
 CREATE TABLE `habitacionservicio` (
   `idhabitacionservicio` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
   `idservicio` int(11) NOT NULL,
   `precio` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- inserciones Cristian Mesa
-insert into 'habitacionservicio' ('idhabitacionservicio', 'idhabitacion', 'idservicio', 'precio') values
-(1, 1, 1, 80.000),
-(2, 2, 2, 100.000),
-(3, 3, 3, 120.000),
-(4, 4, 4, 150.000);
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `hotel`
 --
-
 CREATE TABLE `hotel` (
   `idhotel` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
@@ -278,21 +162,10 @@ CREATE TABLE `hotel` (
   `fecharegistro` datetime NOT NULL,
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Inserciones Cristian Mesa
-insert into hotel ('idhotel', 'idusuario', 'idciudad', 'estrella', 'nombre', 'direccion', 'telefono', 'celular', 'correo', 'sitioweb', 'descripcion', 'fecharegistro', 'inhabilitado') values
-(1, 1, 14, 4, 'Hotel las delicias', 'Calle 24A #44A 65', '2034556', '3214567890', 'www.hotellasdelicias.com', 'Este hotel está muy bien situado en el distrito Teusaquillo de Bogotá, a 1 km del centro internacional de exposiciones Corferias y a 6 km de la plaza Bolívar. También cuenta con salón compartido, centro de negocios y WiFi gratuita en todas las instalaciones. El alojamiento ofrece recepción 24 horas, servicio de habitaciones y cambio de divisa.', '22/08/2015', ''),
-(2, 2, 30, 3, 'Hotel del valle', 'Avenida 5 Norte 29 AN 48', '3065487', '3209807654', 'www.hoteldelvalle.com', 'a 3,7 km de la catedral de San Pedro, y ofrece alojamiento con restaurante, aparcamiento privado gratuito, bar y salón compartido. Ofrece habitaciones familiares y terraza. El alojamiento ofrece recepción 24 horas, servicio de traslado, mostrador de información turística y conexión WiFi gratuita en todo el establecimiento.', '10/09/2002', ''),
-(3, 3, 20, 5, 'Hotel del cauca', 'Km 18 Vía Bolombolo', '7035506', '3124667920', 'www.hotelcauca.com', 'se encuentra en Jericó, a 30 minutos en coche del centro de la localidad, y cuenta con un jardín, una piscina cubierta, un restaurante y conexión Wi-Fi gratuita. Además, sirve un desayuno bufé.', '30/02/2010', ''),
-(5, 4, 5, 4, 'Hotel de santamarta', 'Calle 115 # 2 - 39.', '9057812', '3116006130', 'www.hotelsantamarta.com', ' situado en Santa Marta, ofrece WiFi gratis y piscina al aire libre. Además, el establecimiento alberga terraza, centro de fitness y un bar. Hay aparcamiento privado.', '17/05/2008', ''),
-
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `imagen`
 --
-
 CREATE TABLE `imagen` (
   `idimagen` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
@@ -300,32 +173,22 @@ CREATE TABLE `imagen` (
   `url` varchar(500) NOT NULL,
   `fecharegistro` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
+-- -------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `pais`
 --
-
 CREATE TABLE `pais` (
   `idpais` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `nacionalidad` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `pais`
 --
-
-INSERT INTO `pais` (`idpais`, `nombre`, `nacionalidad`) VALUES
-(1, 'Colombia', 'Colombiano/a');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `puntuacion`
 --
-
 CREATE TABLE `puntuacion` (
   `idpuntuacion` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
@@ -333,13 +196,10 @@ CREATE TABLE `puntuacion` (
   `puntuacion` int(11) NOT NULL,
   `fecharegistro` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `reserva`
 --
-
 CREATE TABLE `reserva` (
   `idreserva` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
@@ -351,13 +211,10 @@ CREATE TABLE `reserva` (
   `fechareserva` datetime NOT NULL,
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `reservahabitacion`
 --
-
 CREATE TABLE `reservahabitacion` (
   `idreservahabitacion` int(11) NOT NULL,
   `idhabitacion` int(11) NOT NULL,
@@ -366,51 +223,28 @@ CREATE TABLE `reservahabitacion` (
   `descuento` float NOT NULL,
   `fecharegistro` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `rol`
 --
-
 CREATE TABLE `rol` (
   `idrol` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `rol`
 --
-
-INSERT INTO `rol` (`idrol`, `nombre`) VALUES
-(1, 'Propietario'),
-(2, 'Administrador'),
-(3, 'Turista');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `servicio`
 --
-
 CREATE TABLE `servicio` (
   `idservicio` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- inseciones Cristian Mesa
-insert into 'servicio' ('idservivio', 'nombre', 'descripcion') values
-(1, 'Parqueadero', 'Lugar para estacionar los vehiculos'),
-(2, 'Restaurante', 'Capacidad de mesas y comidas que ofrece '),
-(3, 'Piscina', 'Cantidad y medidas de la/s piscinas'),
-(4, 'Piscina con tobogan', 'Especificacion de tobogan'),
-(5, 'Area de juegos', 'Juegos y/o atracciones')
-(6, 'Zona verde', 'Cantidad de zona verde'),
-(7, 'Limpieza a la habitacion', 'Servicio que prestan las empleadas domesticas'),
-(8, 'Recibir comida', 'Llevar comida hasta la habitacion');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `tipodocumento`
 --
@@ -419,47 +253,28 @@ CREATE TABLE `tipodocumento` (
   `idtipodocumento` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `tipodocumento`
 --
-
 INSERT INTO `tipodocumento` (`idtipodocumento`, `nombre`) VALUES
 (1, 'Cédula de ciudadania'),
 (2, 'Cédula de extranjeria');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `tipohabitacion`
 --
-
 CREATE TABLE `tipohabitacion` (
   `idtipohabitacion` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `tipohabitacion`
 --
-
-INSERT INTO `tipohabitacion` (`idtipohabitacion`, `nombre`, `descripcion`) VALUES
-(1, 'Individual Sencilla', 'Una habitación asignada a una persona. Solo tiene una cama.'),
-(2, 'Individual', 'Una habitación asignada a una persona. Puede tener una o más camas.'),
-(3, 'Doble', ' Una habitación asignada a dos personas. Puede tener una o más camas.'),
-(4, 'Triple', 'Una habitación asignada a tres personas. Puede tener dos o más camas.'),
-(5, 'Quad', 'Una sala asignada a cuatro personas. Puede tener dos o más camas.'),
-(6, 'Queen', 'Una habitación con una cama de matrimonio. Puede ser ocupado por una o más personas.'),
-(7, 'King', 'Una habitación con una cama king-size. Puede ser ocupado por una o más personas'),
-(8, 'Estudio', 'una habitación con una cama de estudio, un sofá que se puede convertir en una cama. También puede tener una cama adicional.');
-
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `usuario`
 --
-
 CREATE TABLE `usuario` (
   `idusuario` int(11) NOT NULL,
   `idtipodocumento` int(11) NOT NULL,
@@ -478,21 +293,10 @@ CREATE TABLE `usuario` (
   `fecharegistro` datetime NOT NULL,
   `inhabilitado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Volcado de datos para la tabla `usuario`
 --
-
-INSERT INTO `usuario` (`idusuario`, `idtipodocumento`, `numerodocumento`, `idpais`, `idrol`, `nombre`, `apellido`, `correo`, `contrasena`, `celular`, `genero`, `token`, `imagen`, `fechanacimiento`, `fecharegistro`, `inhabilitado`) VALUES
-(1, 1, '1004567241', 1, 3, 'David Andres', 'Castro Gomez', 'Davida13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3504942333', 1, NULL, NULL, '2002-03-24', '2020-08-06 04:22:12', 0),
-(2, 1, '1004567458', 1, 2, 'Maria Fernanda', 'Gonzales Versalles', 'MariaF23@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3404567890', 0, NULL, NULL, '1996-01-01', '2020-08-06 04:16:43', 0),
-(3, 1, '1004569145', 1, 1, 'Karol Andrea', 'Castillo Versalles', 'Karola13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3456789090', 0, NULL, NULL, '1995-02-01', '2020-08-06 04:19:02', 0),
-(4, 2, '1002567241', 1, 2, 'Juan David', 'Gomez Neira', 'Juanda13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3403453434', 1, NULL, NULL, '1995-01-03', '2020-08-06 04:22:32', 0),
-(5, 1, '10056781213', 1, 3, 'Karol Mariana', 'Torres Quijano', 'Karolm13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3214563434', 0, NULL, NULL, '2000-03-24', '2020-08-06 04:24:15', 0),
-(6, 1, '1003568251', 1, 1, 'Julian David', 'Paz Castellanos', 'Juliand@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3445678989', 1, NULL, NULL, '1998-05-09', '2020-08-06 04:28:53', 0);
-
 -- --------------------------------------------------------
-
 --
 -- Estructura Stand-in para la vista `v_habitacion`
 -- (Véase abajo para la vista actual)
@@ -512,9 +316,7 @@ CREATE TABLE `v_habitacion` (
 ,`fecharegistro` datetime
 ,`inhabilitado` tinyint(1)
 );
-
 -- --------------------------------------------------------
-
 --
 -- Estructura Stand-in para la vista `v_hotel`
 -- (Véase abajo para la vista actual)
@@ -534,9 +336,7 @@ CREATE TABLE `v_hotel` (
 ,`fecharegistro` datetime
 ,`inhabilitado` tinyint(1)
 );
-
 -- --------------------------------------------------------
-
 --
 -- Estructura Stand-in para la vista `v_usuario`
 -- (Véase abajo para la vista actual)
@@ -559,9 +359,7 @@ CREATE TABLE `v_usuario` (
 ,`fecharegistro` datetime
 ,`inhabilitado` tinyint(1)
 );
-
 -- --------------------------------------------------------
-
 --
 -- Estructura para la vista `v_habitacion`
 --
@@ -914,6 +712,172 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idtipodocumento`) REFERENCES `tipodocumento` (`idtipodocumento`),
   ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`);
 COMMIT;
+
+INSERT INTO `pais` (`idpais`, `nombre`, `nacionalidad`) VALUES
+(1, 'Colombia', 'Colombiano/a');
+
+INSERT INTO `departamento` (`iddepartamento`, `idpais`, `nombre`) VALUES
+(1, 1, 'Amazonas'),
+(2, 1, 'Antioquia'),
+(3, 1, 'Arauca'),
+(4, 1, 'Atlántico'),
+(5, 1, 'Bolívar'),
+(6, 1, 'Boyacá'),
+(7, 1, 'Caldas'),
+(8, 1, 'Caquetá'),
+(9, 1, 'Casanare'),
+(10, 1, 'Cauca'),
+(11, 1, 'Cesar'),
+(12, 1, 'Chocó'),
+(13, 1, 'Córdoba'),
+(14, 1, 'Cundinamarca'),
+(15, 1, 'Guainía'),
+(16, 1, 'Guaviare'),
+(17, 1, 'Huila'),
+(18, 1, 'La Guajira'),
+(19, 1, 'Magdalena'),
+(20, 1, 'Meta'),
+(21, 1, 'Nariño'),
+(22, 1, 'Norte de Santander'),
+(23, 1, 'Putumayo'),
+(24, 1, 'Quindío'),
+(25, 1, 'Risaralda'),
+(26, 1, 'San Andrés y Providencia'),
+(27, 1, 'Santander'),
+(28, 1, 'Sucre'),
+(29, 1, 'Tolima'),
+(30, 1, 'Valle del Cauca'),
+(31, 1, 'Vaupés'),
+(32, 1, 'Vichada');
+
+INSERT INTO `ciudad` (`idciudad`, `iddepartamento`, `nombre`) VALUES
+(1, 1, 'Leticia'),
+(2, 2, 'Medellin'),
+(3, 3, 'Arauca'),
+(4, 4, 'Barranquilla'),
+(5, 5, 'Cartagena'),
+(6, 6, 'Tunja'),
+(7, 7, 'Manizales'),
+(8, 8, 'Florencia'),
+(9, 9, 'Yopal'),
+(10, 10, 'Popayán'),
+(11, 11, 'Valledupar'),
+(12, 12, 'Quibdó'),
+(13, 13, 'Montería'),
+(14, 14, 'Bogotá D.C'),
+(15, 15, 'Inírida'),
+(16, 16, 'San Jose del Guaviare'),
+(17, 17, 'Neiva'),
+(18, 18, 'Riohacha'),
+(19, 19, 'Santa Marta'),
+(20, 20, 'Villavicencio'),
+(21, 21, 'Pasto'),
+(22, 22, 'Cúcuta'),
+(23, 23, 'Mocoa'),
+(24, 24, 'Armenia'),
+(25, 25, 'Pereira'),
+(26, 26, 'San Andrés'),
+(27, 27, 'Bucaramanga'),
+(28, 28, 'Sincelejo'),
+(29, 29, 'Ibagué'),
+(30, 30, 'Cali'),
+(31, 31, 'Mitú'),
+(32, 32, 'Puerto Carreño'),
+(33, 20, 'Acacias'),
+(34, 20, 'Guamal'),
+(35, 20, 'Granada'),
+(36, 20, 'San Martín');
+
+INSERT INTO `estadoreserva` (`idestadoreserva`, `nombre`, `descripcion`) VALUES
+(1, 'En procéso', NULL),
+(2, 'Finalizada', NULL),
+(3, 'Cancelada', NULL);
+
+INSERT INTO `rol` (`idrol`, `nombre`) VALUES
+(1, 'Propietario'),
+(2, 'Administrador'),
+(3, 'Turista');
+
+INSERT INTO servicio (idservicio, nombre, descripcion) values
+(1, 'Parqueadero', 'Lugar para estacionar los vehiculos'),
+(2, 'Restaurante', 'Capacidad de mesas y comidas que ofrece '),
+(3, 'Piscina', 'Cantidad y medidas de la/s piscinas'),
+(4, 'Piscina con tobogan', 'Especificacion de tobogan'),
+(5, 'Area de juegos', 'Juegos y/o atracciones'),
+(6, 'Zona verde', 'Cantidad de zona verde'),
+(7, 'Limpieza a la habitacion', 'Servicio que prestan las empleadas domesticas'),
+(8, 'Recibir comida', 'Llevar comida hasta la habitacion');
+
+INSERT INTO `tipohabitacion` (`idtipohabitacion`, `nombre`, `descripcion`) VALUES
+(1, 'Individual Sencilla', 'Una habitación asignada a una persona. Solo tiene una cama.'),
+(2, 'Individual', 'Una habitación asignada a una persona. Puede tener una o más camas.'),
+(3, 'Doble', ' Una habitación asignada a dos personas. Puede tener una o más camas.'),
+(4, 'Triple', 'Una habitación asignada a tres personas. Puede tener dos o más camas.'),
+(5, 'Quad', 'Una sala asignada a cuatro personas. Puede tener dos o más camas.'),
+(6, 'Queen', 'Una habitación con una cama de matrimonio. Puede ser ocupado por una o más personas.'),
+(7, 'King', 'Una habitación con una cama king-size. Puede ser ocupado por una o más personas'),
+(8, 'Estudio', 'una habitación con una cama de estudio, un sofá que se puede convertir en una cama. También puede tener una cama adicional.');
+
+
+INSERT INTO `usuario` (`idusuario`, `idtipodocumento`, `numerodocumento`, `idpais`, `idrol`, `nombre`, `apellido`, `correo`, `contrasena`, `celular`, `genero`, `token`, `imagen`, `fechanacimiento`, `fecharegistro`, `inhabilitado`) VALUES
+(1, 1, '1004567241', 1, 3, 'David Andres', 'Castro Gomez', 'Davida13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3504942333', 1, NULL, NULL, '2002-03-24', '2020-08-06 04:22:12', 0),
+(2, 1, '1004567458', 1, 2, 'Maria Fernanda', 'Gonzales Versalles', 'MariaF23@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3404567890', 0, NULL, NULL, '1996-01-01', '2020-08-06 04:16:43', 0),
+(3, 1, '1004569145', 1, 1, 'Karol Andrea', 'Castillo Versalles', 'Karola13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3456789090', 0, NULL, NULL, '1995-02-01', '2020-08-06 04:19:02', 0),
+(4, 2, '1002567241', 1, 2, 'Juan David', 'Gomez Neira', 'Juanda13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3403453434', 1, NULL, NULL, '1995-01-03', '2020-08-06 04:22:32', 0),
+(5, 1, '10056781213', 1, 3, 'Karol Mariana', 'Torres Quijano', 'Karolm13@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3214563434', 0, NULL, NULL, '2000-03-24', '2020-08-06 04:24:15', 0),
+(6, 1, '1003568251', 1, 1, 'Julian David', 'Paz Castellanos', 'Juliand@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '3445678989', 1, NULL, NULL, '1998-05-09', '2020-08-06 04:28:53', 0);
+
+-- Inserciones Cristian Mesa
+insert into hotel (idhotel, idusuario, idciudad, estrella, nombre, direccion, telefono, celular, correo, sitioweb, descripcion, fecharegistro, inhabilitado) values
+(1, 1, 14, 4, 'Hotel las delicias', 'Calle 24A #44A 65', '2034556', '3214567890', 'www.hotellasdelicias.com', 'Este hotel está muy bien situado en el distrito Teusaquillo de Bogotá, a 1 km del centro internacional de exposiciones Corferias y a 6 km de la plaza Bolívar. También cuenta con salón compartido, centro de negocios y WiFi gratuita en todas las instalaciones. El alojamiento ofrece recepción 24 horas, servicio de habitaciones y cambio de divisa.', '22/08/2015', ''),
+(2, 2, 30, 3, 'Hotel del valle', 'Avenida 5 Norte 29 AN 48', '3065487', '3209807654', 'www.hoteldelvalle.com', 'a 3,7 km de la catedral de San Pedro, y ofrece alojamiento con restaurante, aparcamiento privado gratuito, bar y salón compartido. Ofrece habitaciones familiares y terraza. El alojamiento ofrece recepción 24 horas, servicio de traslado, mostrador de información turística y conexión WiFi gratuita en todo el establecimiento.', '10/09/2002', ''),
+(3, 3, 20, 5, 'Hotel del cauca', 'Km 18 Vía Bolombolo', '7035506', '3124667920', 'www.hotelcauca.com', 'se encuentra en Jericó, a 30 minutos en coche del centro de la localidad, y cuenta con un jardín, una piscina cubierta, un restaurante y conexión Wi-Fi gratuita. Además, sirve un desayuno bufé.', '30/02/2010', ''),
+(5, 4, 5, 4, 'Hotel de santamarta', 'Calle 115 # 2 - 39.', '9057812', '3116006130', 'www.hotelsantamarta.com', ' situado en Santa Marta, ofrece WiFi gratis y piscina al aire libre. Además, el establecimiento alberga terraza, centro de fitness y un bar. Hay aparcamiento privado.', '17/05/2008', '');
+
+
+-- ----------------------------------------------------------------------------------------------------------
+-- inserción ALFRED
+insert into habitacion VALUES ('1', '2', '2', '203', '2', '1', '100000', '100000', '2', 'habitacón basica individual', '1', '2020-08-11 16:00:15', '0'),
+('2', '2', '1', '205', '2', '1', '100000', '100000', '2', 'habitacón basica individual', '1', '2020-08-11 16:00:15', '0'),
+('3', '4', '1', '102', '6', '3', '80000', '250000', '1', 'habitacón triple con posibilidad de servicios', '1', '2020-08-11 19:01:15', '0'),
+('4', '4', '2', '505', '6', '3', '90000', '250000', '5', 'habitacón triple con posibilidad de servicios', '1', '2020-08-11 19:02:20', '0'),
+('5', '5', '4', '305', '8', '4', '100000', '300000', '3', 'habitacón quad con servicio a la habitación', '1', '2020-08-11 20:15:56', '0');
+
+insert into puntuacion (idpuntuacion, idhabitacion, idusuario, puntuacion, fecharegistro) values
+(1, 2, 3, 4, '2020-08-11 16:15:47'),
+(2, 5, 4, 3, '2020-07-18 13:35:47'),
+(3, 3, 1, 5, '2020-04-23 16:57:47'),
+(4, 1, 2, 5, '2020-02-04 08:05:47'),
+(5, 1, 4, 3, '2020-08-14 14:07:47');
+
+insert into imagen (idimagen, idhabitacion, titulo, url, fecharegistro) values
+(1, 2, 'Baño', 'https://www.hoteldos.com.co/img_b', '2020-08-11 16:15:47'),
+(2, 5, 'Camas', 'https://www.hotelcinco.com.co/img_c', '2020-07-18 13:35:47'),
+(3, 3, 'Baño', 'https://www.hoteltres.com.co/img_b', '2020-04-23 16:57:47'),
+(4, 1, 'Vista-Ventana', 'https://www.hoteluno.com.co/img_v', '2020-02-04 08:05:47'),
+(7, 1, 'Armario', 'https://www.hotelmax.com.co/img_a', '2020-08-14 14:07:47');
+
+insert into comentario (idcomentario, idhabitacion, idusuario, comentario, fecharegistro) values
+(1, 5, 1, 'Exclente servicio a la habitación', '2020-08-11 16:15:47'),
+(2, 2, 3, 'Camas muy comodas', '2020-07-18 13:35:47'),
+(3, 1, 5, 'Buen precio por buena calidad', '2020-04-23 16:57:47'),
+(4, 3, 5, 'Ducha sin agua caliente', '2020-02-04 08:05:47'),
+(7, 4, 1, 'Falta aire acondicionado', '2020-08-14 14:07:47');
+-- ----------------------------------------------------------------------------------------------------------
+
+INSERT INTO `favorito` (`idfavorito`, `idusuario`, `idhabitacion`, `fecharegistro`) VALUES
+(1, 1, 1, '2020-08-06 04:30:16'),
+(2, 2, 2, '2020-08-06 04:30:45'),
+(3, 3, 3, '2020-08-06 04:31:00'),
+(4, 4, 4, '2020-08-06 04:32:30'),
+(5, 5, 5, '2020-08-06 04:32:27');
+
+-- inserciones Cristian Mesa
+insert into habitacionservicio (idhabitacionservicio, idhabitacion, idservicio, precio) values
+(1, 1, 1, 80.000),
+(2, 2, 2, 100.000),
+(3, 3, 3, 120.000),
+(4, 4, 4, 150.000);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
